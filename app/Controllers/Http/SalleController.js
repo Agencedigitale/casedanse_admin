@@ -45,8 +45,10 @@ class SalleController {
    */
   async store ({ request, response, view }) {
     const nom_salle = request.input('salle')
+    const precision = request.input('precision')
     const salle = await Salle.create({
       nom_salle: nom_salle,
+      precision: precision
     })
 
     await salle.save()

@@ -13,8 +13,9 @@
                     
                     <div class="col-sm-6" style="margin:15px">
                         <label for="salle">Nom de la salle</label>
-                        <input type="text" class="form-control form-control-user" required name="salle" id="salle"
-                            placeholder="Bingerville">
+                        <input type="text" class="form-control form-control-user" required name="salle" id="salle" placeholder="Angré">
+                        <label for="salle" style="margin-top:2%">Adresse précise de la salle</label>
+                        <input type="text" class="form-control form-control-user" required name="precision" id="salle" placeholder="Angré 8e tranche">
                     </div>
                     @if(auth.user.user_type == 2 || auth.user.user_type == 3)
                         <button type="submit" class="col-sm-4 btn btn-primary" style="margin:15px; position:relative;left:1%">
@@ -37,6 +38,7 @@
                     <thead>
                         <tr>
                             <th>Nom de la salle</th>
+                            <th>Adresse precise de la salle</th>
                             @if(auth.user.user_type == 2 || auth.user.user_type == 3)
                                 <th>Actions</th>
                             @endif
@@ -45,6 +47,7 @@
                     <tfoot>
                         <tr>
                             <th>Nom de la salle</th>
+                            <th>Adresse precise de la salle</th>
                             @if(auth.user.user_type == 2 || auth.user.user_type == 3)
                                 <th>Actions</th>
                             @endif
@@ -54,6 +57,7 @@
                         @each(salle in salles)
                             <tr>
                                 <td>{{salle.nom_salle}}</td>
+                                <td>{{salle.precision}}</td>
                                 @if(auth.user.user_type == 2 || auth.user.user_type == 3)
                                     <td>
                                         <a href="/pointage_form/{{salle.id}}">

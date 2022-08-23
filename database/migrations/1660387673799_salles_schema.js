@@ -8,6 +8,7 @@ class SallesSchema extends Schema {
     this.create('salles', (table) => {
       table.increments()
       table.string('nom_salle')
+      table.string('precision')
       table.timestamps()
     })
   }
