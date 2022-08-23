@@ -1,0 +1,31 @@
+@layout('layouts/layout')
+
+@section('content')
+  <!-- Begin Page Content -->
+  <div class="container-fluid">
+    <!-- Page Heading -->
+        <h1 class="h3 mb-4 text-gray-800">Ajoutez un nouvel abonnement</h1>
+        <div class="form-group">
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+                <form action="/post_abonnement" method="POST">
+                    {{ csrfField() }}
+                    <div class="col-sm-6 mb-3 mb-sm-0" style="margin:15px">
+                        <label for="prix">Prix de l'abonnement</label>
+                        <input type="number" class="form-control form-control-user" name="prix" id="" placeholder="">
+                    </div>
+                    <div class="col-sm-6" style="margin:15px">
+                        <label for="nombre">Nombre de jour séance</label>
+                        <input type="text" class="form-control form-control-user" name="nombre" id="" placeholder="Nombre de séance">
+                    </div>
+    
+                    <button type="submit" class="col-sm-4 btn btn-primary" style="margin:15px; position:relative;left:1%">
+                        Ajouter l'abonnement
+                    </button>
+                </form>
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+    </div>
+
+@endsection

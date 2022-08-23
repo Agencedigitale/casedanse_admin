@@ -1,0 +1,136 @@
+<!-- Sidebar -->
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/accueil">
+        <div class="sidebar-brand-icon rotate-n-15">
+            <i class="fas fa-laugh-wink"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">ça se danse</div>
+    </a>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
+
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item active">
+        <a class="nav-link" href="/accueil">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Tableau de bord</span></a>
+    </li>
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Interface
+    </div>
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Nav Item - Tables -->
+    <li class="nav-item">
+        <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePageeees" aria-expanded="true" aria-controls="collapsePages">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Gestion des clients</span>
+        </a>
+            <div id="collapsePageeees" class="collapse" aria-labelledby="headingPages"
+                data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Salles</h6>
+                    @if(auth.user.user_type == 2 || auth.user.user_type == 3)
+                        <a class="collapse-item" href="/create_form">Enregistrer un client</a>
+                    @endif
+                    <a class="collapse-item" href="/list_users">Liste des client</a>
+                    <h6 class="collapse-header">Parents</h6>
+                    <a class="collapse-item" href="/list_users">Consulter la liste</a>
+                </div>
+            </div>
+    </li>
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Nav Item - Tables -->
+    
+    <li class="nav-item">
+        <a class="nav-link" href="/seances" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Séances</span>
+        </a>
+            <div id="collapsePages" class="collapse" aria-labelledby="headingPages"
+                data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    @if(auth.user.user_type == 2 || auth.user.user_type == 3)
+                        <a class="collapse-item" href="/seance_form">Creer une séance</a>
+                    @endif
+                    <a class="collapse-item" href="/seances">Liste des séances</a>
+                    <a class="collapse-item" href="/seances">Pointer un client</a>
+                </div>
+            </div>
+    </li>
+
+    @if(auth.user.user_type == 3)
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+        <li class="nav-item">
+            <a class="nav-link" href="/seances" data-toggle="collapse" data-target="#admins" aria-expanded="true" aria-controls="collapsePages">
+                <i class="fas fa-fw fa-folder"></i>
+                <span>Administrateurs</span>
+            </a>
+                <div id="admins" class="collapse" aria-labelledby="headingPages"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="/register">Ajoutez un admin</a>
+                    </div>
+                </div>
+        </li>
+    @endif
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Nav Item - Tables -->
+    
+    <li class="nav-item">
+        <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePagees" aria-expanded="true" aria-controls="collapsePages">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Abonnements</span>
+        </a>
+            <div id="collapsePagees" class="collapse" aria-labelledby="headingPages"
+                data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    @if(auth.user.user_type == 3)
+                        <a class="collapse-item" href="/create_abonnement">Créer les abonnements</a>
+                    @endif
+                    <a class="collapse-item" href="/list_abonnement">Liste des abonnements</a>
+                </div>
+            </div>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+
+    <li class="nav-item">
+        <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePageees" aria-expanded="true" aria-controls="collapsePages">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Salles & Parents</span>
+        </a>
+            <div id="collapsePageees" class="collapse" aria-labelledby="headingPages"
+                data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Salles</h6>
+                    <a class="collapse-item" href="/add_salle">Créer une salle</a>
+                    <h6 class="collapse-header">Parents</h6>
+                    <a class="collapse-item" href="/add_parent">Ajouter un parent</a>
+                </div>
+            </div>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+
+    <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
+
+</ul>
+<!-- End of Sidebar -->

@@ -1,0 +1,120 @@
+@layout('layouts/layout')
+@section('content')
+<!-- Begin Page Content -->
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <h1 class="h3 mb-4 text-gray-800">Ajoutez un nouvel admin</h1>
+        <div class="form-group">
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+                <form action="/post_admin" method="POST">
+                    {{ csrfField() }}
+                    <div class="col-sm-6 mb-3 mb-sm-0" style="margin:15px">
+                        <input type="text" class="form-control form-control-user" name="nom" id="name" placeholder="Entrez le nom">
+                            @if(hasErrorFor('nom'))
+                                <span style="color:red;">
+                                    {{ getErrorFor('nom') }}
+                                </span>
+                            @endif
+                    </div>
+                    <div class="col-sm-6" style="margin:15px">
+                        <input type="text" class="form-control form-control-user" name="prenoms" id="LastName"
+                            placeholder="Entrez les prénoms">
+                            @if(hasErrorFor('prenoms'))
+                                <span style="color:red;">
+                                    {{ getErrorFor('prenoms') }}
+                                </span>
+                            @endif
+                    </div>
+                    <div class="col-sm-6 mb-3 mb-sm-0" style="margin:15px">
+                        <input type="text" class="form-control form-control-user" name="telephone" id="Téléphone"
+                            placeholder="Téléphone">
+                            @if(hasErrorFor('telephone'))
+                                <span style="color:red;">
+                                    {{ getErrorFor('telephone') }}
+                                </span>
+                            @endif
+                    </div>
+                    <div class="col-sm-6 mb-3 mb-sm-0" style="margin:15px">
+                        <input type="text" class="form-control form-control-user" name="lieu_habitation" id="lieu_habitation"
+                            placeholder="Lieu d'habitation">
+                            @if(hasErrorFor('lieu_habitation'))
+                                <span style="color:red;">
+                                    {{ getErrorFor('lieu_habitation') }}
+                                </span>
+                            @endif
+                    </div>
+                    <div class="col-sm-6 mb-3 mb-sm-0" style="margin:15px">
+                        <input type="password" class="form-control form-control-user" name="password" id="password"
+                            placeholder="Lieu d'habitation">
+                            @if(hasErrorFor('password'))
+                                <span style="color:red;">
+                                    {{ getErrorFor('password') }}
+                                </span>
+                            @endif
+                    </div>
+                    <div class="col-sm-6 mb-3 mb-sm-0" style="margin:15px">
+                        <label for="niveau">Selectionnez le type d'admin</label>
+                        <select name="niveau" class="form-control form-control-user" id="niveau">
+                                <option value="1">Admin consultant</option>
+                                <option value="2">Admin executif</option>
+                                <option value="3">Super admin</option>
+                        </select>
+                    </div>
+                    
+    
+                    <button type="submit" class="col-sm-4 btn btn-primary" style="margin:15px; position:relative;left:1%">
+                        Ajouter une nouvelle personne
+                    </button>
+                </form>
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+    </div>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Liste des admins</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Nom de l'admin</th>
+                            <th>Numéro de l'admin</th>
+                            <th>Lieu d'habitation de l'admin</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Nom de l'admin</th>
+                            <th>Numéro de l'admin</th>
+                            <th>Lieu d'habitation de l'admin</th>
+                            <th>Actions</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @each(admin in admins)
+                            <tr>
+                                <td>{{admin.nom}}</td>
+                                <td>{{admin.telephone}}</td>
+                                <td>{{admin.lieu_habitation}}</td>
+                                <td>
+                                    <a href="/pointage_form/{{parent.id}}">
+                                        <button class="btn btn-warning">Modifier</button>
+                                    </a>
+                                    <a href="#">
+                                        <button class="btn btn-danger">Supprimer</button>
+                                    </a>
+                                </td>
+                            </tr>
+                        @endeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+@endsection

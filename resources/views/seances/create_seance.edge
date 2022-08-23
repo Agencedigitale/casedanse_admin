@@ -1,0 +1,58 @@
+@layout('layouts/layout')
+
+@section('content')
+  <!-- Begin Page Content -->
+  <div class="container-fluid">
+    <!-- Page Heading -->
+        <h1 class="h3 mb-4 text-gray-800">Ajoutez une nouvelle séance</h1>
+        <div class="form-group">
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+                <form action="/create_seance" method="POST">
+                    {{ csrfField() }}
+                    <div class="col-sm-6 mb-3 mb-sm-0" style="margin:15px">
+                        <label for="jour">Jour de la séance</label>
+                        <select name="jour" id="" class="form-control">
+                            <option value="null">Choisissez le jour de la séance</option>
+                            <option value="Lundi">Lundi</option>
+                            <option value="Mardi">Mardi</option>
+                            <option value="Mercredi">Mercredi</option>
+                            <option value="Jeudi">Jeudi</option>
+                            <option value="Vendredi">Vendredi</option>
+                            <option value="Samedi">Samedi</option>
+                            <option value="Dimanche">Dimanche</option>
+                        </select>
+                            @if(hasErrorFor('jour'))
+                                <span style="color:red;">
+                                    {{ getErrorFor('jour') }}
+                                </span>
+                            @endif
+                    </div>
+                    <div class="col-sm-6" style="margin:15px">
+                        <label for="salle">Salle de séance</label>
+                        <select name="salle" id="salle" class="form-control form-control-user">
+                            @each(salle in salles)
+                              <option value="{{salle.id}}">{{salle.nom_salle}}</option>
+                            @endeach
+                        </select>
+                    </div>
+                    <div class="col-sm-6" style="margin:15px">
+                        <label for="date">Date de la séance</label>
+                        <input type="date" class="form-control form-control-user" name="date" id="date"
+                            placeholder="Choisissez la date">
+                            @if(hasErrorFor('date'))
+                                <span style="color:red;">
+                                    {{ getErrorFor('date') }}
+                                </span>
+                            @endif
+                    </div>
+    
+                    <button type="submit" class="col-sm-4 btn btn-primary" style="margin:15px; position:relative;left:1%">
+                        Ajouter une nouvelle séance
+                    </button>
+                </form>
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+    </div>
+@endsection

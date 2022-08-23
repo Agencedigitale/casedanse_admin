@@ -1,0 +1,32 @@
+@layout('layouts/layout')
+
+@section('content')
+  <!-- Begin Page Content -->
+  <div class="container-fluid">
+    <!-- Page Heading -->
+        <h1 class="h3 mb-4 text-gray-800">Modifier un abonnement</h1>
+        <div class="form-group">
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+                <form action="/update_abonnement" method="POST">
+                    {{ csrfField() }}
+                    <div class="col-sm-6 mb-3 mb-sm-0" style="margin:15px">
+                        <label for="prix">Prix de l'abonnement</label>
+                        <input type="text" class="form-control form-control-user" name="prix" id="" value="{{abonnee.prix}}">
+                    </div>
+                    <div class="col-sm-6" style="margin:15px">
+                        <label for="nombre">Nombre de séance</label>
+                        <input type="text" class="form-control form-control-user" name="nombre" id="" value="{{abonnee.nombre}}">
+                    </div>
+                    <input type="hidden" name="id" value="{{id}}">
+    
+                    <button type="submit" class="col-sm-4 btn btn-primary" style="margin:15px; position:relative;left:1%">
+                        Modifier l'abonnement
+                    </button>
+                </form>
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+    </div>
+
+@endsection

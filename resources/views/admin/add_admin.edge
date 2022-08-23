@@ -1,0 +1,60 @@
+@layout('layouts/layout_auth')
+
+@section('content')
+    <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="card-body p-0">
+            <!-- Nested Row within Card Body -->
+            <div class="row">
+                <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+                <div class="col-lg-7">
+                    <div class="p-5">
+                        <div class="text-center">
+                            <h1 class="h4 text-gray-900 mb-4">Ajoutez un administrateur !</h1>
+                        </div>
+                        <form class="user">
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <input type="text" name="nom" class="form-control form-control-user" id="exampleFirstName"
+                                        placeholder="Nom">
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="text" name="prenoms" class="form-control form-control-user" id="exampleLastName"
+                                        placeholder="Prénoms">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <select class="form-control" id="" name="type_user">
+                                    <option value="null" selected>niveau de permission de l'admin</option>
+                                    <option value="1">administrateur</option>
+                                    <option value="2" disabled>super admin</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control form-control-user" id="exampleInputEmail"
+                                    placeholder="Adresse email" name="email">
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <input type="password" class="form-control form-control-user"
+                                        id="exampleInputPassword" name="password" placeholder="Mot de passe">
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="password" class="form-control form-control-user"
+                                        id="exampleRepeatPassword" name="password_repeat" placeholder="Repeter le mot de passe">
+                                </div>
+                            </div>
+                            <a href="login.html" class="btn btn-primary btn-user btn-block">
+                                Ajouter l'administrateur
+                            </a>
+                            <hr>
+                        </form>
+                        
+                        <div class="text-center">
+                            <a class="small" href="/">Vous avez deja un compte ? Connectez-vous!</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection

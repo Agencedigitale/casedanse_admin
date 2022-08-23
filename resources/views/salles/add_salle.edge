@@ -1,0 +1,76 @@
+@layout('layouts/layout')
+
+@section('content')
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <h1 class="h3 mb-4 text-gray-800">Ajoutez une nouvelle salle</h1>
+        <div class="form-group">
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+                <form action="/create_salle" method="POST">
+                    {{ csrfField() }}
+                    
+                    <div class="col-sm-6" style="margin:15px">
+                        <label for="salle">Nom de la salle</label>
+                        <input type="text" class="form-control form-control-user" required name="salle" id="salle"
+                            placeholder="Bingerville">
+                    </div>
+                    @if(auth.user.user_type == 2 || auth.user.user_type == 3)
+                        <button type="submit" class="col-sm-4 btn btn-primary" style="margin:15px; position:relative;left:1%">
+                            Ajouter une nouvelle salle
+                        </button>
+                    @endif
+                </form>
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+
+        <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Liste des salles</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Nom de la salle</th>
+                            @if(auth.user.user_type == 2 || auth.user.user_type == 3)
+                                <th>Actions</th>
+                            @endif
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Nom de la salle</th>
+                            @if(auth.user.user_type == 2 || auth.user.user_type == 3)
+                                <th>Actions</th>
+                            @endif
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @each(salle in salles)
+                            <tr>
+                                <td>{{salle.nom_salle}}</td>
+                                @if(auth.user.user_type == 2 || auth.user.user_type == 3)
+                                    <td>
+                                        <a href="/pointage_form/{{salle.id}}">
+                                            <button class="btn btn-warning">Modifier</button>
+                                        </a>
+                                        <a href="#">
+                                            <button class="btn btn-danger">Supprimer</button>
+                                        </a>
+                                    </td>
+                                @endif
+                            </tr>
+                        @endeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    </div>
+
+@endsection

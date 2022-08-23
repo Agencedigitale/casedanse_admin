@@ -1,0 +1,93 @@
+@layout('layouts/layout')
+
+@section('content')
+  <!-- Begin Page Content -->
+    <div class="container-fluid">
+    <!-- Page Heading -->
+        <h1 class="h3 mb-4 text-gray-800">Inscrivez un nouveau danseur</h1>
+        <div class="form-group">
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+                <form action="/create_danseur" method="POST">
+                    {{ csrfField() }}
+                    <div class="col-sm-6 mb-3 mb-sm-0" style="margin:15px">
+                        <input type="text" class="form-control form-control-user" name="nom" id="name" placeholder="Entrez le nom">
+                            @if(hasErrorFor('nom'))
+                                <span style="color:red;">
+                                    {{ getErrorFor('nom') }}
+                                </span>
+                            @endif
+                    </div>
+                    <div class="col-sm-6" style="margin:15px">
+                        <input type="text" class="form-control form-control-user" name="prenoms" id="LastName"
+                            placeholder="Entrez les prénoms">
+                            @if(hasErrorFor('prenoms'))
+                                <span style="color:red;">
+                                    {{ getErrorFor('prenoms') }}
+                                </span>
+                            @endif
+                    </div>
+                    <div class="col-sm-6 mb-3 mb-sm-0" style="margin:15px">
+                        <input type="text" class="form-control form-control-user" name="telephone" id="Téléphone"
+                            placeholder="Téléphone">
+                            @if(hasErrorFor('telephone'))
+                                <span style="color:red;">
+                                    {{ getErrorFor('telephone') }}
+                                </span>
+                            @endif
+                    </div>
+                    <div class="col-sm-6 mb-3 mb-sm-0" style="margin:15px">
+                        <input type="text" class="form-control form-control-user" name="lieu_habitation" id="lieu_habitation"
+                            placeholder="Lieu d'habitation">
+                            @if(hasErrorFor('lieu_habitation'))
+                                <span style="color:red;">
+                                    {{ getErrorFor('lieu_habitation') }}
+                                </span>
+                            @endif
+                    </div>
+                    <div class="col-sm-6 mb-3 mb-sm-0" style="margin:15px">
+                        <input type="text" class="form-control form-control-user" name="lieu_travail" id="lieu_travail"
+                            placeholder="Lieu de travail">
+                            @if(hasErrorFor('lieu_travail'))
+                                <span style="color:red;">
+                                    {{ getErrorFor('lieu_travail') }}
+                                </span>
+                            @endif
+                    </div>
+                    <div class="col-sm-6 mb-3 mb-sm-0" style="margin:15px">
+                        <label for="salle_id">Selectionnez votre salle préférée</label>
+                        <select name="salle_id" class="form-control form-control-user" id="salle">
+                            @each(salle in salles)
+                                <option value="{{salle.id}}">{{salle.nom_salle}}</option>
+                            @endeach
+                        </select>
+                        @if(hasErrorFor('salle_id'))
+                            <span style="color:red;">
+                                {{ getErrorFor('salle_id') }}
+                            </span>
+                        @endif
+                    </div>
+                    <div class="col-sm-6 mb-3 mb-sm-0" style="margin:15px">
+                        <label for="parent_id">Selectionnez le parent de l'enfant</label>
+                        <select name="parent_id" class="form-control form-control-user" id="parent">
+                            @each(parent in parents)
+                                <option value="{{parent.id}}">{{parent.nom_parent}}</option>
+                            @endeach
+                        </select>
+                        @if(hasErrorFor('parent_id'))
+                            <span style="color:red;">
+                                {{ getErrorFor('parent_id') }}
+                            </span>
+                        @endif
+                    </div>
+                    
+    
+                    <button type="submit" class="col-sm-4 btn btn-primary" style="margin:15px; position:relative;left:1%">
+                        Ajouter une nouvelle personne
+                    </button>
+                </form>
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+    </div>
+@endsection

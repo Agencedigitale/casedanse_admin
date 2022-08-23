@@ -1,0 +1,93 @@
+@layout('layouts/layout')
+
+@section('content')
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <h1 class="h3 mb-4 text-gray-800">Ajoutez une nouveau parent</h1>
+        <div class="form-group">
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+                <form action="/create_parent" method="POST">
+                    {{ csrfField() }}
+                    
+                    <div class="col-sm-6" style="margin:15px">
+                        <input type="text" style="margin:10px" class="form-control form-control-user" name="nom_parent" id="nom" placeholder="Nom du parent" />
+                        @if(hasErrorFor('nom_parent'))
+                            <span style="color:red;">
+                                {{ getErrorFor('nom_parent') }}
+                            </span>
+                        @endif
+                        <input type="text" style="margin:10px" class="form-control form-control-user" name="telephone_parent" id="numero" placeholder="Numéro du parent" />
+                            @if(hasErrorFor('telephone_parent'))
+                                <span style="color:red;">
+                                    {{ getErrorFor('telephone_parent') }}
+                                </span>
+                            @endif
+                        <input type="text" style="margin:10px" class="form-control form-control-user" name="lieu_habitation" id="lieu" placeholder="Lieu d'habitation" />
+                            @if(hasErrorFor('lieu_habitation'))
+                                <span style="color:red;">
+                                    {{ getErrorFor('lieu_habitation') }}
+                                </span>
+                            @endif
+                    </div>
+                    @if(auth.user.user_type == 2 || auth.user.user_type == 3)
+                        <button type="submit" class="col-sm-4 btn btn-primary" style="margin:15px; position:relative;left:1%">
+                            Ajouter un nouveau parent
+                        </button>
+                    @endif
+                </form>
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Liste des parents</h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Nom du parent</th>
+                                <th>Numéro du parent</th>
+                                <th>Lieu d'habitation du parent</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Nom du parent</th>
+                                <th>Numéro du parent</th>
+                                <th>Lieu d'habitation du parent</th>
+                                <th>Actions</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            @each(parent in parents)
+                                <tr>
+                                    <td>{{parent.nom_parent}}</td>
+                                    <td>{{parent.telephone_parent}}</td>
+                                    <td>{{parent.lieu_habitation}}</td>
+                                    @if(auth.user.user_type == 2 || auth.user.user_type == 3)
+                                        <td>
+                                            <a href="/pointage_form/{{parent.id}}">
+                                                <button class="btn btn-warning">Modifier</button>
+                                            </a>
+                                            <a href="#">
+                                                <button class="btn btn-danger">Supprimer</button>
+                                            </a>
+                                        </td>
+                                    @endif
+                                </tr>
+                            @endeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+@endsection
