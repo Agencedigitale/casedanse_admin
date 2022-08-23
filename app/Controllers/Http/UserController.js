@@ -111,7 +111,7 @@ class UserController {
   //connexion de l'utilisateur
   async loginUser({request, response}){
     const numero = request.input('numero')
-    const userConnected = await Database.select('*').from('users').where({user_type:3, telephone: numero})
+    const userConnected = await Database.select('*').from('users').where({user_type:0, telephone: numero})
     if (userConnected.length < 1) {
       return response.json({
         etat: false,
