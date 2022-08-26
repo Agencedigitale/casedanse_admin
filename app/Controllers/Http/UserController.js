@@ -156,15 +156,16 @@ class UserController {
     const salle = await Database.select('salle_id').from('users').where({id:user_id, status:0})
     const salle_id = salle[0].salle_id
     const seances = await Database.select('*').from('seances').where({status:0, salle_id:salle_id})
-    console.log(seances)
     const data = []
     for (const seance of seances) {
       const salle = await Database.select('*').from('salles').where({id: seance.salle_id})
+      const discipline = await Database.select('*').from('disciplines').where({id:seance.discipline_id})
       const item = {
         id: seance.id,
         jour: seance.jour,
         date: seance.date,
-        salle: salle[0].nom_salle
+        salle: salle[0].nom_salle,
+        discipline: discipline[0].discpline
       }
       data.push(item)
     }
