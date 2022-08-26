@@ -113,6 +113,17 @@ class ReservationController {
     })
   }
 
+  async totalReservation({request, response, params}){
+    const user_id = params.id
+    const total = await Database.from('reservations').where({user_id: user_id}).getCount()
+    console.log(total)
+    return response.json({
+      etat: true,
+      nombre: total,
+      status:200
+    })
+  }
+
 }
 
 module.exports = ReservationController

@@ -70,3 +70,5 @@ Route.get('/sallepref/:id','UserController.sallePreferee')
 Route.get('/userSeance/:id','UserController.listeSeances')
 //faire une reservation
 Route.post('/createReservation/:id','ReservationController.makeReservation')
+//listes des reservations
+Route.get('/totalReservation/:id','ReservationController.totalReservation')
