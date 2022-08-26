@@ -36,7 +36,8 @@ class SeanceController {
    */
   async create ({view }) {
     const salles = await Database.select('*').from('salles')
-    return view.render('seances/create_seance',{salles})
+    const disciplines = await Database.select('*').from('disciplines')
+    return view.render('seances/create_seance',{salles, disciplines})
   }
 
   /**
@@ -62,6 +63,7 @@ class SeanceController {
   const seance = await Seance.create({
       jour: request.input('jour'),
       salle_id: request.input('salle'),
+      discipline_id: request.input('discipline'),
       date: request.input('date'),
       status:0
   })

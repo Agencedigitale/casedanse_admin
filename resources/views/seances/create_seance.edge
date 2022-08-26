@@ -35,6 +35,14 @@
                               <option value="{{salle.id}}">{{salle.nom_salle}}</option>
                             @endeach
                         </select>
+                    </div>2
+                    <div class="col-sm-6" style="margin: 15px">
+                        <label for="discipline">Discipline de la séance</label>
+                        <select name="discipline" id="discipline" class="form-control form-control-user">
+                            @each(discipline in disciplines)
+                              <option value="{{discipline.id}}">{{discipline.discipline}}</option>
+                            @endeach
+                        </select>
                     </div>
                     <div class="col-sm-6" style="margin:15px">
                         <label for="date">Date de la séance</label>
