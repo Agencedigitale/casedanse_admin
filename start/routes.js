@@ -72,3 +72,5 @@ Route.get('/userSeance/:id','UserController.listeSeances')
 Route.post('/createReservation/:id','ReservationController.makeReservation')
 //listes des reservations
 Route.get('/totalReservation/:id','ReservationController.totalReservation')
+//check si le user est à jour
+Route.get('/userUpdate/:id','UserController.userUpdate')

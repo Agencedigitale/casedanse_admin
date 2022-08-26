@@ -192,6 +192,26 @@ class UserController {
     })
   }
 
+  //verifier si le user est a jour dans ses cotisations
+  async userUpdate({response, request, params}){
+    const user_id = params.id
+    const user = await Database.select('*').from('users').where({id: user_id})
+    console.log(user)
+    const status = user[0].uptodate
+    let reponse = ""
+    if (status == 0) {
+      reponse = "A jour"
+    } else {
+      reponse == "Pas à jour"
+    }
+
+    return response.json({
+      etat: true,
+      statut:reponse,
+      status:200
+    })
+  }
+
 }
 
 module.exports = UserController
