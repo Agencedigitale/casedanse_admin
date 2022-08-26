@@ -134,7 +134,7 @@ module.exports = {
   csrf: {
     enable: true,
     methods: ['POST', 'PUT', 'DELETE'],
-    filterUris: ['/loginUser','/createReservation/:id','/create_discipline'],
+    filterUris: ['/loginUser','/createReservation/:id','/create_discipline','/post_admin'],
     cookieOptions: {
       httpOnly: false,
       sameSite: true,
