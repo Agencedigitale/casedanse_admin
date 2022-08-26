@@ -10,6 +10,7 @@ class SeancesSchema extends Schema {
       table.string('jour').notNullable()
       table.date('date').nullable()
       table.integer('salle_id').unsigned().references('id').inTable('salles')
+      table.integer('discipline_id').unsigned().references('id').inTable('disciplines')
       table.string('status').notNullable().defaultTo(0)
       table.timestamps()
     })
