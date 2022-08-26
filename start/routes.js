@@ -31,6 +31,10 @@ Route.get('/seances','SeanceController.index')
 Route.post('/create_seance','SeanceController.store')
 Route.get('/pointage_form/:id','JourSeanceController.create')
 Route.post('/create_pointage','JourSeanceController.store')
+//disciplines
+Route.get('/discipline_form','DisciplineController.index')
+Route.post('/create_discipline','DisciplineController.store')
+Route.get('/delete_discipline/:id','DisciplineController.destroy')
 //abonnements
 Route.get('/list_abonnement','AbonnementController.show')
 Route.get('/create_abonnement','AbonnementController.create')
