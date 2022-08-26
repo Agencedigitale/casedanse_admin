@@ -19,7 +19,7 @@ const { RouteGroup } = require('@adonisjs/framework/src/Route/Manager')
 const Route = use('Route')
 
 Route.on('/').render('login')
-Route.get('/register','UserController.createAdminForm')
+Route.get('/register','UserController.createAdminForm').middleware(['auth'])
 //users
 Route.get('/accueil','UserController.accueil').middleware(['auth'])
 Route.get('/create_form','UserController.create').as('createForm')
@@ -47,7 +47,7 @@ Route.post('/create_parent','ParentController.store').validator('createParent')
 //administrateur
 Route.post('/login','UserController.login')
 Route.get('/logout','UserController.logout').middleware(['auth'])
-Route.post('/post_admin','UserController.createAdmin').validator('createAdmin')
+Route.post('/post_admin','UserController.createAdmin').validator('createAdmin').middleware(['auth'])
 
 
 /**
