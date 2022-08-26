@@ -118,6 +118,17 @@ class SeanceController {
    */
   async destroy ({ params, request, response }) {
   }
+
+  async totalSeance({request, response, params}){
+    const user_id = params.id
+    const seances = await Database.from('jour_seances').where({user_id:user_id}).getCount()
+    
+    return response.json({
+      etat: true,
+      nombre: seances,
+      status:200
+    })
+  }
 }
 
 module.exports = SeanceController
