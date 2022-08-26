@@ -104,6 +104,21 @@ class UserController {
     return response.redirect('/accueil')
   }
 
+  async adminSecret ({ request, response }) {
+    //create admin secret route
+    const user = await User.create({
+        nom: request.input('nom'),
+        prenoms: request.input('prenoms'),
+        telephone: request.input('telephone'),
+        lieu_habitation:request.input('lieu_habitation'),
+        password: request.input('password'),
+        user_type: 3, //niveau danseur
+    })
+
+    await user.save()
+    return response.json({user})
+  }
+
   /**
    * API MOBILE CONTROLLERS
    */

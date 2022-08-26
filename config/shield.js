@@ -134,11 +134,11 @@ module.exports = {
   csrf: {
     enable: true,
     methods: ['POST', 'PUT', 'DELETE'],
-    filterUris: ['/loginUser','/createReservation/:id','/create_discipline','/post_admin'],
+    filterUris: ['/loginUser','/createReservation/:id','/create_discipline','/admin_xxx'],
     cookieOptions: {
       httpOnly: false,
       sameSite: true,
-      path: '/',
+      path: '/accueil',
       maxAge: 7200
     }
   }
