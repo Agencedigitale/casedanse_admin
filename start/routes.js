@@ -47,7 +47,7 @@ Route.get('/add_salle','SalleController.index')
 Route.post('/create_salle','SalleController.store')
 //parents
 Route.get('/add_parent','ParentController.index')
-Route.post('/create_parent','ParentController.store').validator('createParent')
+Route.post('/create_parent','ParentController.store')
 //administrateur
 Route.post('/login','UserController.login')
 Route.get('/logout','UserController.logout').middleware(['auth'])
