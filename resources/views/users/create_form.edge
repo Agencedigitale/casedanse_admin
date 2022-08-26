@@ -70,6 +70,7 @@
                     <div class="col-sm-6 mb-3 mb-sm-0" style="margin:15px">
                         <label for="parent_id">Selectionnez le parent de l'enfant</label>
                         <select name="parent_id" class="form-control form-control-user" id="parent">
+                                <option value="0">Choisissez un parent</option>
                             @each(parent in parents)
                                 <option value="{{parent.id}}">{{parent.nom_parent}}</option>
                             @endeach
