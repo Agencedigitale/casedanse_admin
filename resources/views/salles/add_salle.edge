@@ -28,53 +28,53 @@
         </div>
 
         <!-- DataTales Example -->
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Liste des salles</h6>
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th>Nom de la salle</th>
-                            <th>Adresse precise de la salle</th>
-                            @if(auth.user.user_type == 2 || auth.user.user_type == 3)
-                                <th>Actions</th>
-                            @endif
-                        </tr>
-                    </thead>
-                    <tfoot>
-                        <tr>
-                            <th>Nom de la salle</th>
-                            <th>Adresse precise de la salle</th>
-                            @if(auth.user.user_type == 2 || auth.user.user_type == 3)
-                                <th>Actions</th>
-                            @endif
-                        </tr>
-                    </tfoot>
-                    <tbody>
-                        @each(salle in salles)
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Liste des salles</h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
                             <tr>
-                                <td>{{salle.nom_salle}}</td>
-                                <td>{{salle.precision}}</td>
+                                <th>Nom de la salle</th>
+                                <th>Adresse precise de la salle</th>
                                 @if(auth.user.user_type == 2 || auth.user.user_type == 3)
-                                    <td>
-                                        <a href="/pointage_form/{{salle.id}}">
-                                            <button class="btn btn-warning">Modifier</button>
-                                        </a>
-                                        <a href="#">
-                                            <button class="btn btn-danger">Supprimer</button>
-                                        </a>
-                                    </td>
+                                    <th>Actions</th>
                                 @endif
                             </tr>
-                        @endeach
-                    </tbody>
-                </table>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Nom de la salle</th>
+                                <th>Adresse precise de la salle</th>
+                                @if(auth.user.user_type == 2 || auth.user.user_type == 3)
+                                    <th>Actions</th>
+                                @endif
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            @each(salle in salles)
+                                <tr>
+                                    <td>{{salle.nom_salle}}</td>
+                                    <td>{{salle.precision}}</td>
+                                    @if(auth.user.user_type == 2 || auth.user.user_type == 3)
+                                        <td>
+                                            <a href="/pointage_form/{{salle.id}}">
+                                                <button class="btn btn-warning">Modifier</button>
+                                            </a>
+                                            <a href="#">
+                                                <button class="btn btn-danger">Supprimer</button>
+                                            </a>
+                                        </td>
+                                    @endif
+                                </tr>
+                            @endeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
     </div>
 
 @endsection

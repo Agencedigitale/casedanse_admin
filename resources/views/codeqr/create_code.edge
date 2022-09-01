@@ -1,0 +1,33 @@
+@layout('layouts/layout')
+
+@section('content')
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <h1 class="h3 mb-4 text-gray-800">Créer un nouveau codeqr</h1>
+        <div class="form-group">
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+                <form action="/create_qr" method="POST">
+                    {{ csrfField() }}
+                    <div class="col-sm-6" style="margin:15px">
+                        <label for="salle">Selectionnez la salle</label>
+                        <select name="salle" id="salle">
+                            @each(salle in salles)
+                              <option value="{{salle.id}}">{{salle.nom_salle}}</option>
+                            @endeach
+                        </select>
+                        <label for="description">Description</label>
+                        <textarea name="description" id="description" cols="30" rows="10">Optionel</textarea>
+                    </div>
+                    @if(auth.user.user_type == 2 || auth.user.user_type == 3)
+                        <button type="submit" class="col-sm-4 btn btn-primary" style="margin:15px; position:relative;left:1%">
+                            Créer un nouveau code qr
+                        </button>
+                    @endif
+                </form>
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+    </div>
+@endsection

@@ -11,6 +11,10 @@ class Salle extends Model {
     seances(){
         return this.belongsTo('App/Models/Seance')
     }
+
+    codeqr(){
+        return this.hasMany('App/Models/Codeqr')
+    }
 }
 
 module.exports = Salle
