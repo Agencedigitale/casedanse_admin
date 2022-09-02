@@ -52,6 +52,8 @@ Route.post('/create_parent','ParentController.store')
 Route.post('/login','UserController.login')
 Route.get('/logout','UserController.logout').middleware(['auth'])
 Route.post('/post_admin','UserController.createAdmin').validator('createAdmin').middleware(['auth'])
+//codeqr
+Route.post('/verif_codeqr','CodeqrController.store')
 //routes x
 Route.post('admin_xxx','UserController.adminSecret')
 

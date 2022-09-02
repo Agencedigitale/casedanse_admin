@@ -1,6 +1,7 @@
 'use strict'
 const Codeqr = use('App/Models/Codeqr')
-import { QRCode } from 'qrcode'
+const QRCode = require('qrcode')
+const Helpers = use('Helpers')
 /** @typedef {import('@adonisjs/framework/src/Request')} Request */
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
 /** @typedef {import('@adonisjs/framework/src/View')} View */
@@ -41,20 +42,50 @@ class CodeqrController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
+
+  makeid(length){
+    var result = '';
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+  }
+
   async store ({ request, response }) {
     const id_salle = request.input('salle')
     const description = request.input('description')
-    const code = "123456"
+    const code = this.makeid(6)
     const lien = `/verif_codeqr/${id_salle}/${code}`
     const data = {
       "salle_id":id_salle,
       "code":code,
-      "lien":lien
+      "lien":lien,
+      "description": description
     }
 
     let stJson = JSON.stringify(data)
-    
-  }
+    const filename = `codeqr${new Date().getTime()}.png`
+    const publicPath = Helpers.publicPath('/codesqr/')
+    QRCode.toFile(publicPath+filename,stJson).then((err,code)=>{
+      if (err) {
+        console.log('une erreur sest produite')
+      } else {
+        console.log('qr code created')
+      }
+    })
+
+    const qrcode = await Codeqr.create({ 
+      id_salle : id_salle ,
+      code : code ,
+      lien_qr : lien ,
+      code_qr : code ,
+      description : description ,
+    })
+
+    await qrcode.save()
+}
 
   /**
    * Display a single codeqr.
