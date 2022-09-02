@@ -55,6 +55,7 @@ Route.post('/post_admin','UserController.createAdmin').validator('createAdmin').
 //codeqr
 Route.post('/verif_codeqr','CodeqrController.store')
 Route.get('/list_codesqr','CodeqrController.index').middleware(['auth'])
+Route.get('/delete_codeqr/:id_code','CodeqrController.destroy').middleware(['auth'])
 //routes x
 Route.post('admin_xxx','UserController.adminSecret')
 

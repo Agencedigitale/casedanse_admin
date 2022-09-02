@@ -149,6 +149,13 @@ class CodeqrController {
    * @param {Response} ctx.response
    */
   async destroy ({ params, request, response }) {
+    const id = params.id_code
+    const affectedRows = await Database
+      .table('codeqrs')
+      .where('id', id)
+      .update({ status: 1 })
+      
+    return response.redirect('/list_codesqr')
   }
 }
 

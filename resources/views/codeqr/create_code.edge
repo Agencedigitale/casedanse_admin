@@ -79,7 +79,7 @@
                                     <td>{{code.created_at}}</td>
                                     @if(auth.user.user_type == 2 || auth.user.user_type == 3)
                                         <td>
-                                            <a href="#">
+                                            <a href="/delete_codeqr/{{code.id}}">
                                                 <button class="btn btn-danger">Désactivé</button>
                                             </a>
                                         </td>
