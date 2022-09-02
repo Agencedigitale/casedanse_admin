@@ -22,6 +22,7 @@ class CodeqrController {
    */
   async index ({ request, response, view }) {
     const codesqr = await Database.select('*').from('codeqrs').where({status:0})
+    const salles = await Database.select('*').from('salles')
     const data = []
     for (const code of codesqr) {
       const salle = await Database.select('*').from('salles').where({id: code.id_salle})
@@ -35,7 +36,7 @@ class CodeqrController {
       }
       data.push(item)
     }
-    return view.render('codeqr/create_code',{data})
+    return view.render('codeqr/create_code',{data, salles})
   }
 
   /**
@@ -69,7 +70,7 @@ class CodeqrController {
     return result;
   }
 
-  async store ({ request, response }) {
+  async store ({ request, response, view }) {
     const id_salle = request.input('salle')
     const description = request.input('description')
     const code = this.makeid(6)
@@ -101,7 +102,7 @@ class CodeqrController {
     })
 
     await qrcode.save()
-    return qrcode
+    return response.redirect('/list_codesqr')
 }
 
   /**
