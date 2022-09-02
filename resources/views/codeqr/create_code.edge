@@ -68,11 +68,13 @@
                                         <img src="{{code.publicPath}}{{code.code_qr}}" width="100" height="100" />
                                     </td>
                                     @if(code.status == 0)
-                                    <td>
-                                        <button class="btn btn-success" disabled style="width:150px">Actif</button>
-                                    </td>
+                                        <td>
+                                            <button class="btn btn-success" disabled style="width:150px">Actif</button>
+                                        </td>
                                     @else
-                                      <td>Inactif</td>
+                                        <td>
+                                            <button class="btn btn-secondary" disabled style="width:150px">Inactif</button>
+                                        </td>
                                     @endif
                                     <td>{{code.created_at}}</td>
                                     @if(auth.user.user_type == 2 || auth.user.user_type == 3)
