@@ -1,5 +1,6 @@
 'use strict'
 const Codeqr = use('App/Models/Codeqr')
+const Database = use('Database')
 const QRCode = require('qrcode')
 const Helpers = use('Helpers')
 /** @typedef {import('@adonisjs/framework/src/Request')} Request */
@@ -20,6 +21,21 @@ class CodeqrController {
    * @param {View} ctx.view
    */
   async index ({ request, response, view }) {
+    const codesqr = await Database.select('*').from('codeqrs').where({status:0})
+    const data = []
+    for (const code of codesqr) {
+      const salle = await Database.select('*').from('salles').where({id: code.id_salle})
+      const item = {
+        id: code.id,
+        code_qr: code.code_qr,
+        status: code.status,
+        created_at: code.created_at,
+        id_salle: salle[0].nom_salle,
+        publicPath: Helpers.publicPath('/codesqr/')
+      }
+      data.push(item)
+    }
+    return view.render('codeqr/create_code',{data})
   }
 
   /**
@@ -80,11 +96,12 @@ class CodeqrController {
       id_salle : id_salle ,
       code : code ,
       lien_qr : lien ,
-      code_qr : code ,
+      code_qr : filename ,
       description : description ,
     })
 
     await qrcode.save()
+    return qrcode
 }
 
   /**

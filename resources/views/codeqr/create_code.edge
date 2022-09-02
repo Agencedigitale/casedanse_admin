@@ -12,13 +12,13 @@
                     {{ csrfField() }}
                     <div class="col-sm-6" style="margin:15px">
                         <label for="salle">Selectionnez la salle</label>
-                        <select name="salle" id="salle">
+                        <select name="salle" id="salle" class="form-control">
                             @each(salle in salles)
                               <option value="{{salle.id}}">{{salle.nom_salle}}</option>
                             @endeach
                         </select>
-                        <label for="description">Description</label>
-                        <textarea name="description" id="description" cols="30" rows="10">Optionel</textarea>
+                        <label for="description" style="margin-top:2%">Description</label>
+                        <textarea name="description" class="form-control" id="description" cols="30" rows="5">Optionel</textarea>
                     </div>
                     @if(auth.user.user_type == 2 || auth.user.user_type == 3)
                         <button type="submit" class="col-sm-4 btn btn-primary" style="margin:15px; position:relative;left:1%">
@@ -28,6 +28,66 @@
                 </form>
             </div>
             <!-- /.container-fluid -->
+        </div>
+
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Liste des codes valides</h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Salle du code</th>
+                                <th>Code QR</th>
+                                <th>Status du code</th>
+                                <th>Date de creation</th>
+                                @if(auth.user.user_type == 2 || auth.user.user_type == 3)
+                                    <th>Actions</th>
+                                @endif
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Salle du code</th>
+                                <th>Code QR</th>
+                                <th>Status du code</th>
+                                <th>Date de creation</th>
+                                @if(auth.user.user_type == 2 || auth.user.user_type == 3)
+                                    <th>Actions</th>
+                                @endif
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            @each(code in data)
+                                <tr>
+                                    <td>{{code.id_salle}}</td>
+                                    <td>
+                                        <img src="{{code.publicPath}}{{code.code_qr}}" width="100" height="100" />
+                                    </td>
+                                    @if(code.status == 0)
+                                    <td>
+                                        <button class="btn btn-success" disabled style="width:150px">Actif</button>
+                                    </td>
+                                    @else
+                                      <td>Inactif</td>
+                                    @endif
+                                    <td>{{code.created_at}}</td>
+                                    @if(auth.user.user_type == 2 || auth.user.user_type == 3)
+                                        <td>
+                                            <a href="#">
+                                                <button class="btn btn-danger">Désactivé</button>
+                                            </a>
+                                        </td>
+                                    @endif
+                                </tr>
+                            @endeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 @endsection
