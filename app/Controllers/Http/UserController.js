@@ -180,6 +180,7 @@ class UserController {
         jour: seance.jour,
         date: seance.date,
         salle: salle[0].nom_salle,
+        salle_id:salle[0].id,
         discipline: discipline[0].discpline
       }
       data.push(item)
