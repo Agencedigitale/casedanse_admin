@@ -113,6 +113,27 @@ class ReservationController {
     })
   }
 
+  async checkReservation({request, response, params}){
+    const user_id = params.user_id
+    const seance_id = params.seance_id
+
+    const reservation = await Database.select('id').from('reservations').where({seance_id: seance_id, user_id: user_id})
+    console.log(reservation)
+    if (reservation.length > 0) {
+      return response.json({
+        etat: true,
+        content: true,
+        status:200
+      })
+    }else{
+      return response.json({
+        etat: false,
+        content: false,
+        status:204
+      })
+    }
+  }
+
   async totalReservation({request, response, params}){
     const user_id = params.id
     const total = await Database.from('reservations').where({user_id: user_id}).getCount()

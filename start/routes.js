@@ -72,6 +72,8 @@ Route.get('/list_salles','UserController.listeSalle')
 Route.get('/sallepref/:id','UserController.sallePreferee')
 //liste des seances
 Route.get('/userSeance/:id','UserController.listeSeances')
+//verifier si la seance a été reserve
+Route.get('/checkReservation/:user_id/:seance_id','ReservationController.checkReservation')
 //faire une reservation
 Route.post('/createReservation/:id','ReservationController.makeReservation')
 //listes des reservations
