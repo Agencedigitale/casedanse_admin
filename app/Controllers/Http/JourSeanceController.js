@@ -47,7 +47,7 @@ class JourSeanceController {
    * @param {Response} ctx.response
    */
   async store ({ request, response }) {
-    //create user
+    
     const jour_seance = await JourSeance.create({
       seance_id: request.input("id"),
       user_id: request.input("nom"),
@@ -103,6 +103,49 @@ class JourSeanceController {
    * @param {Response} ctx.response
    */
   async destroy ({ params, request, response }) {
+  }
+
+  /**
+   * API MOBILE CONTROLLERS
+   */
+  async markYourPresence({params,request, response}){
+    const codeqr = params.codeqr
+    const qrcode = await Database.select("*").from('codeqrs').where({code: codeqr})
+    const status = qrcode[0].status
+    const salle_id = qrcode[0].id_salle
+    
+    if (status == 0) {
+      //codeqr valide
+      if (request.input('salle_id') != salle_id) {
+        //code scanné est different de la salle du qr
+        return response.json({
+          etat: false,
+          message:"Le code que vous avez scanné n'est pas celui de cette salle"
+        })
+      }
+      if (request.input('salle_id') == salle_id) {
+        //code scanné est celui de la salle du qr
+        const jour_seance = await JourSeance.create({
+          seance_id: request.input("seance_id"),
+          user_id: request.input("user_id"),
+          heure_arrivee: request.input('heure_debut'),
+          heure_depart: request.input('heure_fin')
+        })
+        await jour_seance.save()
+        response.json({
+          etat: true,
+          content: jour_seance,
+          status:200
+        })
+      }
+    } else {
+      //codeqr invalide
+      return response.json({
+        etat: false,
+        message:"Le code que vous avez scanné n'est plus valide"
+      })
+    }
+    
   }
 }
 

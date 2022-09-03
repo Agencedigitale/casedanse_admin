@@ -82,3 +82,5 @@ Route.get('/totalReservation/:id','ReservationController.totalReservation')
 Route.get('/userUpdate/:id','UserController.userUpdate')
 //comptaliser le nombre de seance d'un user
 Route.get('/seancePresence/:id','SeanceController.totalSeance')
+//marquer une presence
+Route.post('/markYourPresence/:codeqr','JourSeanceController.markYourPresence')
